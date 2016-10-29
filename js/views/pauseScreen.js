@@ -19,7 +19,8 @@ var PauseScreen = React.createClass({
   getInitialState: function() {
     return {
       descriptionText: this.props.contentTree.description,
-      controlBarVisible: true
+      controlBarVisible: true,
+      commentText: ''
     };
   },
 
@@ -43,6 +44,20 @@ var PauseScreen = React.createClass({
     event.preventDefault();
     this.props.controller.togglePlayPause();
     this.props.controller.state.accessibilityControlsEnabled = true;
+  },
+
+  handleCommentChanged: function(event) {
+    this.setState({
+      commentText: event.currentTarget.value
+    });
+  },
+
+  handleCommentSubmit: function(event) {
+    this.props.controller.sendComment(this.state.commentText);
+    this.setState({
+      commentText: ''
+    });
+    this.handleClick(event);
   },
 
   render: function() {
@@ -117,6 +132,11 @@ var PauseScreen = React.createClass({
         <a className={actionIconClass} onClick={this.handleClick}>
           <Icon {...this.props} icon="pause" style={actionIconStyle}/>
         </a>
+
+        <form className="oo-action-icon-pause" onSubmit={this.handleCommentSubmit}>
+          <label htmlFor="comment">Comment:</label>
+          <input type="text" id="comment" value={this.state.commentText} onChange={this.handleCommentChanged} />
+        </form>
 
         <div className="oo-interactive-container">
           {this.props.closedCaptionOptions.enabled ?

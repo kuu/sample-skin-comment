@@ -1455,6 +1455,40 @@ OO.plugin("Html5Skin", function (OO, _, $, W) {
       if(this.state.mainVideoAspectRatio > 0) {
         this.state.mainVideoInnerWrapper.css("padding-top", this.state.mainVideoAspectRatio+"%");
       }
+    },
+
+    sendComment: function (comment) {
+      console.log('comment: ' + comment);
+      var commentSettings = this.state.config.comment;
+      if (commentSettings && commentSettings.socket) {
+        commentSettings.socket.emit('comment', {
+          embedCode: this.state.assetId,
+          comment: comment,
+          thumbnail: this.getCurrentThumbnail(commentSettings),
+          position: {
+            current: this.state.mainVideoPlayhead,
+            duration: this.state.mainVideoDuration
+          }
+        });
+      }
+    },
+
+    getCurrentThumbnail: function (settings) {
+      var current = Math.round(this.state.mainVideoPlayhead);
+      var thumbnails = this.state.thumbnails.data.thumbnails;
+      while (current > 0 && !thumbnails[String(current)]) {
+        current--;
+      }
+      var thumbnailObj = thumbnails[String(current)];
+      if (!thumbnailObj) {
+        return null;
+      }
+      var size = settings.imageWidth || '640';
+      var thumbnail = thumbnailObj[size];
+      if (!thumbnail) {
+        return null;
+      }
+      return thumbnail;
     }
   };
 
