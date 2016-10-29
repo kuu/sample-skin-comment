@@ -184,7 +184,7 @@ gulp.task('pages', function () {
 
 // Extra files
 gulp.task('copy', function () {
-  gulp.src(['./skin.json'])
+  gulp.src(['./vendor/*', './skin.json'])
     .pipe(gulp.dest('./build'));
 });
 

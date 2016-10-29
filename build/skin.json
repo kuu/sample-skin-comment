@@ -1,28 +1,16 @@
 {
   "general": {
     "watermark": {"imageResource": {"url": "//player.ooyala.com/static/v4/candidate/latest/skin-plugin/assets/images/ooyala-watermark.png","androidResource" : "logo","iosResource" : "logo"  } },
-    "loadingImage": {"imageResource": {"url": "//player.ooyala.com/static/v4/candidate/latest/skin-plugin/assets/images/loader_svg.svg" } }
+    "loadingImage": {"imageResource": {"url": "build/loader_svg.svg" } }
   },
   "localization": {
     "defaultLanguage": "en",
     "availableLanguageFile": [
       {
         "language": "en",
-        "languageFile": "//player.ooyala.com/static/v4/candidate/latest/skin-plugin/en.json",
+        "languageFile": "build/en.json",
         "androidResource": "skin-config/en.json",
         "iosResource": "en"
-      },
-      {
-        "language": "es",
-        "languageFile": "//player.ooyala.com/static/v4/candidate/latest/skin-plugin/es.json",
-        "androidResource": "skin-config/es.json",
-        "iosResource": "es"
-      },
-      {
-        "language": "zh",
-        "languageFile": "//player.ooyala.com/static/v4/candidate/latest/skin-plugin/zh.json",
-        "androidResource": "skin-config/zh.json",
-        "iosResource": "zh"
       }
     ]
   },
